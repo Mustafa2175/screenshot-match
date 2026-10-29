@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { MenuItem } from "@/data/menu";
 
-type Line = { id: string; name: string; price: number; qty: number; image?: string };
+type Line = { id: string; name: string; price: number; qty: number; image?: string | undefined };
 type Ctx = {
   lines: Line[];
   add: (i: MenuItem) => void;
