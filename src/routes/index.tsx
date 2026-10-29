@@ -1,24 +1,50 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ShoppingBag } from "lucide-react";
+import { Navbar } from "@/components/site/Navbar";
+import { MenuSection } from "@/components/site/MenuSection";
+import { CartDrawer } from "@/components/site/CartDrawer";
+import { Hero, Showcase, About, Gallery, Contact, Footer } from "@/components/site/Sections";
+import { CartProvider, useCart } from "@/lib/cart";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "مانشيز Munchie's | برجر وبطاطس في أسوان" },
+      { name: "description", content: "منيو مانشيز كامل بالأسعار — برجر، فات بير، بطاطس Cup وCono. اختار واطلب على واتساب. لو كبير عليك، اضغط!" },
+      { property: "og:title", content: "مانشيز Munchie's — لو كبير عليك، اضغط" },
+      { property: "og:description", content: "برجر وبطاطس وجود فايبز في أسوان. اطلب على واتساب." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+function FloatingCart() {
+  const { count, total, setOpen } = useCart();
+  if (!count) return null;
+  return (
+    <button onClick={() => setOpen(true)} className="btn-gold fixed bottom-4 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3 px-6 py-3.5 text-lg">
+      <ShoppingBag className="h-5 w-5" /> شوف طلبك ({count}) — {total} ج
+    </button>
+  );
+}
+
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <CartProvider>
+      <Navbar />
+      <main>
+        <Hero />
+        <MenuSection />
+        <Showcase />
+        <About />
+        <Gallery />
+        <Contact />
+      </main>
+      <Footer />
+      <FloatingCart />
+      <CartDrawer />
+    </CartProvider>
   );
 }
