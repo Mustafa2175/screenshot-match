@@ -24,7 +24,7 @@ function FloatingCart() {
   const { count, total, setOpen } = useCart();
   if (!count) return null;
   return (
-    <button onClick={() => setOpen(true)} className="btn-gold fixed bottom-4 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3 px-6 py-3.5 text-lg">
+    <button onClick={() => setOpen(true)} className="btn-gold fixed bottom-4 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap px-6 py-3.5 text-base">
       <ShoppingBag className="h-5 w-5" /> شوف طلبك ({count}) — {total} ج
     </button>
   );
