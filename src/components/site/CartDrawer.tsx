@@ -12,9 +12,9 @@ export function CartDrawer() {
 
   const send = () => {
     const e: Record<string, string> = {};
-    if (!f.name.trim()) e.name = "اكتب اسمك";
-    if (!isValidEgyptPhone(f.phone)) e.phone = "اكتب رقم موبايل صحيح (11 رقم)";
-    if (!f.address.trim()) e.address = "اكتب العنوان";
+    if (!f.name.trim()) e["name"] = "اكتب اسمك";
+    if (!isValidEgyptPhone(f.phone)) e["phone"] = "اكتب رقم موبايل صحيح (11 رقم)";
+    if (!f.address.trim()) e["address"] = "اكتب العنوان";
     setErr(e);
     if (Object.keys(e).length) return;
     window.open(whatsappUrl(contact.whatsapp, buildOrderMessage(lines, f)), "_blank");

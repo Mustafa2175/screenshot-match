@@ -10,7 +10,7 @@ export type MenuItem = {
   desc: string;
   price: number; // EGP
   category: string;
-  image?: string;
+  image?: string | undefined;
   bestSeller?: boolean;
   isNew?: boolean;
 };

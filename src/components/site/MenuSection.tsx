@@ -43,7 +43,7 @@ function Card({ item }: { item: MenuItem }) {
 }
 
 export function MenuSection() {
-  const [cat, setCat] = useState(categories[0].id);
+  const [cat, setCat] = useState(categories[0]?.id ?? "burgers");
   const current = categories.find((c) => c.id === cat)!;
   const items = menu.filter((m) => m.category === cat);
   return (
